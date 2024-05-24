@@ -1,10 +1,11 @@
-package com.nioyatech.mlhubprojecttest.StepDefinitions;
+package mlhubprojecttest.StepDefinitions;
 
-import com.nioyatech.mlhubprojecttest.Utilities.ConfigurationReader;
-import com.nioyatech.mlhubprojecttest.Utilities.Driver;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import mlhubprojecttest.Utilities.ConfigurationReader;
+import mlhubprojecttest.Utilities.Driver;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;

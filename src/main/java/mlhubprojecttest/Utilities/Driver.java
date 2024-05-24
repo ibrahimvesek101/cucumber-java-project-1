@@ -1,6 +1,7 @@
-package com.nioyatech.mlhubprojecttest.Utilities;
+package mlhubprojecttest.Utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import mlhubprojecttest.Utilities.ConfigurationReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;

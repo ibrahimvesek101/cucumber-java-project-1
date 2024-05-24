@@ -3,16 +3,24 @@ package mlhubprojecttest.StepDefinitions;
 import io.cucumber.java.en.Then;
 import io.cucumber.datatable.DataTable;
 import mlhubprojecttest.Pages.RegisterPage;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
-
 import static mlhubprojecttest.Pages.RegisterPage.*;
 import static mlhubprojecttest.Utilities.BrowserUtils.waitFor;
 import static mlhubprojecttest.Utilities.Driver.driver;
 
-public class MyStepdefs {
+public class RegisterStepDef {
 
     RegisterPage registerPage = new RegisterPage();
 
@@ -58,7 +66,7 @@ public class MyStepdefs {
 
     @Then("User logs in to Aimped")
     public void userLogsInToAimped() {
-      //  registerPage.inputUsername.sendKeys(username);
+        registerPage.inputUsername.sendKeys(username);
         registerPage.inputPassword.sendKeys(password);
         registerPage.signInButton.click();
         waitFor(3);
@@ -69,6 +77,47 @@ public class MyStepdefs {
         String usernameStr = registerPage.usernameText.getText();
         System.out.println("username = " + username);
         Assert.assertEquals(usernameStr, username);
+
+        // Excel dosyasını okuma veya oluşturma
+        File excelFile = new File("/Users/ibrahimvesek/Desktop/username.xlsx");
+        Workbook workbook;
+        Sheet sheet;
+
+        try {
+            if (excelFile.exists()) {
+                FileInputStream fileInputStream = new FileInputStream(excelFile);
+                workbook = new XSSFWorkbook(fileInputStream);
+                sheet = workbook.getSheetAt(0);
+            } else {
+                workbook = new XSSFWorkbook();
+                sheet = workbook.createSheet("username");
+            }
+
+            // Boş olan ilk hücreyi bulma
+            int rowNum = 0;
+            while (sheet.getRow(rowNum) != null && sheet.getRow(rowNum).getCell(0) != null && !sheet.getRow(rowNum).getCell(0).getStringCellValue().isEmpty()) {
+                rowNum++;
+            }
+
+            // Boş olan ilk hücreye veri yazma
+            Row row = sheet.getRow(rowNum);
+            if (row == null) {
+                row = sheet.createRow(rowNum);
+            }
+            Cell cell = row.createCell(0);
+            cell.setCellValue(usernameStr);
+
+            // Excel dosyasını kaydetme
+            try (FileOutputStream fileOut = new FileOutputStream("/Users/ibrahimvesek/Desktop/username.xlsx")) {
+                workbook.write(fileOut);
+            }
+
+            // Kaynakları kapatma
+            workbook.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Then("The user enters an e-mail address and verifies error message")

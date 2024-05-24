@@ -1,4 +1,4 @@
-package com.nioyatech.mlhubprojecttest.Utilities;
+package mlhubprojecttest.Utilities;
 
 import java.io.FileInputStream;
 import java.io.IOException;

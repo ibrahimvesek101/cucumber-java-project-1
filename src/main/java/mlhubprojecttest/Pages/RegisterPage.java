@@ -1,15 +1,15 @@
-package com.nioyatech.mlhubprojecttest.Pages;
+package mlhubprojecttest.Pages;
 
-import com.nioyatech.mlhubprojecttest.Utilities.Driver;
+import mlhubprojecttest.Utilities.Driver;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.apache.commons.lang3.RandomStringUtils;
 
 public class RegisterPage extends BasePage {
     public static String mail;
     public static String username;
-    public static int usernameLength = 4; //username : yazılan sayının bir fazlası sayıda karakter içerir.
+    public static int usernameLength = 3; //username : yazılan sayının bir fazlası sayıda karakter içerir.
     public static String password = "Test.101";
 
     @FindBy(id = "login")
@@ -58,7 +58,7 @@ public class RegisterPage extends BasePage {
         Driver.driver.get("https://yopmail.com/");
         yopInputMail.sendKeys(fakeUsername() + Keys.ENTER);
         mail = yopMail.getText();
-        username = "A" + mail.substring(0, usernameLength);
+        username = "Test_" + mail.substring(0, usernameLength);
     }
 
 }

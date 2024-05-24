@@ -1,9 +1,9 @@
-package com.nioyatech.mlhubprojecttest.Pages;
+package mlhubprojecttest.Pages;
 
-import com.nioyatech.mlhubprojecttest.Utilities.Driver;
+import mlhubprojecttest.Utilities.Driver;
 import org.openqa.selenium.support.PageFactory;
 
-public class BasePage extends Driver{
+public class BasePage extends Driver {
 
     public BasePage() {
 
