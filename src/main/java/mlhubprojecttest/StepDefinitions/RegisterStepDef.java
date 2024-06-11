@@ -78,7 +78,7 @@ public class RegisterStepDef {
         System.out.println("username = " + username);
         Assert.assertEquals(usernameStr, username);
 
-        // Excel dosyasını okuma veya oluşturma
+        // Excel
         File excelFile = new File("/Users/ibrahimvesek/Desktop/username.xlsx");
         Workbook workbook;
         Sheet sheet;
